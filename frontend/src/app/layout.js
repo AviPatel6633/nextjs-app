@@ -1,7 +1,9 @@
-import { Inter, Roboto_Mono } from 'next/font/google';
+import localFont from "next/font/local";
 import "./globals.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+// import 'antd/dist/antd.css';
+import { Inter, Roboto_Mono } from 'next/font/google';
+import HeaderExport from "@/component/header/headerExport";
 export const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
@@ -22,8 +24,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${roboto_mono.className}`}>
-        {children}
+      <body className={`${roboto_mono.variable} ${metadata.variable}`}>
+        <HeaderExport>
+          {children}
+        </HeaderExport>
       </body>
     </html>
   );
