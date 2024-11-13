@@ -3,7 +3,7 @@ import "./globals.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import 'antd/dist/antd.css';
 import { Inter, Roboto_Mono } from 'next/font/google';
-import HeaderExport from "@/component/header/headerExport";
+import HeaderExport from "@/component/admin/header/headerExport";
 export const inter = Inter({
   subsets: ['latin'],
   display: 'swap',

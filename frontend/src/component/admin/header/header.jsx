@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Button, Layout, Menu, theme } from 'antd';
 import SidebarMenu from './sidebar';
-import User from "../../../public/assets/images/user.jpg";
+import User from "../../../../public/assets/images/user.jpg";
 import Image from 'next/image';
 const { Header, Sider, Content } = Layout;
 

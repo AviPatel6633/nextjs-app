@@ -4,7 +4,7 @@ import React from 'react'
 // import Loginform from '@/component/loginform/loginform'
 import dynamic from 'next/dynamic';
 
-const Loginform = dynamic(() => import('@/component/loginform/loginform'), {
+const Loginform = dynamic(() => import('@/component/admin/loginform/loginform'), {
     ssr: false, // Disable SSR for this component
   });
 import './login.css'
