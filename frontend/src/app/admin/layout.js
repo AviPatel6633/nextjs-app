@@ -1,7 +1,7 @@
-import "./globals.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Inter, Roboto_Mono } from 'next/font/google';
-
+import HeaderExport from "@/components/admin/customHeader/headerExport";
+import './admin.css'
 export const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
@@ -23,7 +23,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" >
       <body className={`${roboto_mono.variable} ${metadata.variable}`}>
+        <HeaderExport >
           {children}
+        </HeaderExport>
       </body>
     </html>
   );

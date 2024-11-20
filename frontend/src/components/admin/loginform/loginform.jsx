@@ -8,6 +8,8 @@ import { useForm } from "react-hook-form"
 import { useRouter } from 'next/navigation'
 import axios from 'axios';
 
+const loginURL = process.env.NEXT_PUBLIC_BACKEND_URL + "/login";
+
 const Loginform = () => {
     const router = useRouter()
     const { register, handleSubmit, formState: { errors },
@@ -15,7 +17,7 @@ const Loginform = () => {
 
     const onSubmit = (data) => {
         console.log(data);
-        axios.post('http://localhost:4000/login', data, {
+        axios.post(loginURL, data, {
             withCredentials: true, 
         })
         .then(function (response) {

@@ -1,26 +1,48 @@
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 
-export function middleware(request) {
-  // Get the token from the cookies
+const validateURL = process.env.NEXT_PUBLIC_BACKEND_URL + "/validate-token";
+
+export async function middleware(request) {
   const cookieStore = cookies();
   const token = cookieStore.get('auth_token');
 
-  // Check if the current path is '/admin/login' and allow it
+  // If the user is already on the login page, don't check the token
   if (request.nextUrl.pathname === '/admin/login') {
     return NextResponse.next();
   }
 
-  // If token exists and is valid, allow the request to proceed
-  if (token && token.value) {
-    return NextResponse.next();
+  // If no token exists, redirect to login
+  if (!token) {
+    return NextResponse.redirect(new URL('/admin/login', request.url));
   }
 
-  // Redirect to login page if no valid token is found
-  return NextResponse.redirect(new URL('/admin/login', request.url));
+  // Check token validity by calling the backend (API)
+  const isValid = await validateToken(token.value);
+
+  // If the token is invalid, redirect to login
+  if (!isValid) {
+    return NextResponse.redirect(new URL('/admin/login', request.url));
+  }
+
+  // If the token is valid, proceed
+  return NextResponse.next();
 }
 
-// Define which routes the middleware applies to
+// API to validate token by sending it to backend
+async function validateToken(token) {
+  const response = await fetch(validateURL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`, // Send token in Authorization header
+    },
+  });
+
+  const data = await response.json();
+  return data.isValid; // Check if the backend returns the token as valid
+}
+
 export const config = {
   matcher: ['/admin/:path*'],
 };

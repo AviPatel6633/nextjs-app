@@ -10,6 +10,11 @@ router.get('/', (req, res) => {
     res.send('Hello User, Welcome to Nodejs!');
 });
 
+// Add a new route to validate the token
+router.post('/validate-token', jwtAuthMiddleware, (req, res) => {
+    res.json({ isValid: true });  // If jwtAuthMiddleware doesn't throw an error, the token is valid
+});
+
 // Registration route
 router.post('/signup', userController.postUser);
 

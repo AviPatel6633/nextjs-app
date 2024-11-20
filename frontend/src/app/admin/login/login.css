@@ -162,3 +162,7 @@
         height: calc(20vw - 2px);
     }
 }
+.error-message{
+    color: red;
+    font-size: 14px;
+}

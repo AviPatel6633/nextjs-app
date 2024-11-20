@@ -1,8 +1,12 @@
+"use client"
 import React from 'react'
-
+import Breadcrumb from '@/components/admin/breadcrumb/Breadcrumb'
 const Admin = () => {
   return (
-    <div>Admin</div>
+    <div>
+      <Breadcrumb />
+      <div className='card'>Dashboard</div>
+    </div>
   )
 }
 
